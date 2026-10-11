@@ -1,0 +1,659 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Swetha ✨</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --gold: #f7cf83;
+  --pink: #f5a8bd;
+  --cream: #fff4df;
+  --bg: #080812;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: Georgia, serif;
+  overflow-x: hidden;
+}
+
+#stars {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+nav {
+  padding: 25px 6%;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--gold);
+  font: 11px Arial, sans-serif;
+  letter-spacing: 3px;
+}
+
+.hero {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.kicker {
+  color: var(--gold);
+  letter-spacing: 4px;
+  font: 11px Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: clamp(55px, 12vw, 125px);
+  line-height: 1;
+  font-weight: normal;
+  margin: 25px 0;
+}
+
+h1 span {
+  display: block;
+  color: var(--gold);
+  font-style: italic;
+}
+
+.hero p {
+  max-width: 530px;
+  color: #d7cfdb;
+  line-height: 1.9;
+  font-size: 17px;
+}
+
+button {
+  padding: 15px 24px;
+  border: 1px solid var(--gold);
+  background: linear-gradient(120deg, #f8dfac, #d5a968);
+  color: #17101b;
+  cursor: pointer;
+  font: 12px Arial, sans-serif;
+  letter-spacing: 1.5px;
+  transition: .3s;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 25px #f7cf8350;
+}
+
+.primary {
+  margin-top: 30px;
+}
+
+section {
+  width: min(950px, 92%);
+  margin: auto;
+  padding: 85px 0;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.heading small {
+  color: var(--gold);
+  letter-spacing: 3px;
+  font: 11px Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: clamp(35px, 7vw, 65px);
+  font-weight: normal;
+  margin: 18px 0;
+}
+
+.heading p {
+  color: #c4bdcc;
+  line-height: 1.8;
+}
+
+.card {
+  padding: clamp(22px, 5vw, 50px);
+  border: 1px solid #ffffff24;
+  background: linear-gradient(145deg, #ffffff10, #ffffff03);
+  box-shadow: 0 20px 70px #0003;
+}
+
+.letter {
+  text-align: center;
+  max-width: 720px;
+  margin: auto;
+}
+
+.letter h3 {
+  color: var(--gold);
+  font-weight: normal;
+  font-style: italic;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.letter p {
+  color: #e4dce8;
+  line-height: 2;
+  margin: 15px 0;
+  font-size: 17px;
+}
+
+.signature {
+  color: var(--pink) !important;
+  font-style: italic;
+}
+
+/* Photo memories */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.photo {
+  position: relative;
+  height: 330px;
+  background: linear-gradient(145deg, #39263f, #13182b);
+  border: 1px solid #ffffff30;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  display: none;
+}
+
+.photo.has-image img {
+  display: block;
+}
+
+.photo:after {
+  content: "";
+  position: absolute;
+  inset: 45% 0 0;
+  background: linear-gradient(transparent, #080812d9);
+}
+
+.photo-text {
+  position: absolute;
+  z-index: 1;
+  bottom: 22px;
+  padding: 10px;
+  color: #f9e8c5;
+}
+
+.photo-text h3 {
+  font-weight: normal;
+  font-style: italic;
+  font-size: 22px;
+}
+
+.photo-text p {
+  font: 10px Arial, sans-serif;
+  margin-top: 8px;
+  letter-spacing: 2px;
+}
+
+.upload-area {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.upload-area input {
+  max-width: 100%;
+  margin: 15px auto;
+  color: white;
+}
+
+.note {
+  color: #a99bb7;
+  font: 12px/1.8 Arial, sans-serif;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Cake */
+
+.cake-area {
+  text-align: center;
+  padding: 35px 10px;
+}
+
+.cake {
+  display: inline-block;
+  font-size: clamp(100px, 23vw, 170px);
+  animation: floatCake 2.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px #f5a8bd30);
+}
+
+@keyframes floatCake {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.cake-area p {
+  color: #d7cbdc;
+  line-height: 1.8;
+  margin: 20px auto;
+  max-width: 500px;
+}
+
+footer {
+  padding: 45px 15px;
+  text-align: center;
+  color: #94869d;
+  font: 10px Arial, sans-serif;
+  letter-spacing: 2px;
+}
+
+/* Screen entrance */
+
+.fade {
+  animation: appear 1s ease both;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media(max-width: 650px) {
+  nav {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .photo {
+    height: 270px;
+  }
+
+  section {
+    padding: 60px 0;
+  }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="stars"></canvas>
+
+<main>
+
+<nav>
+  <span>A LITTLE BIRTHDAY FILM</span>
+  <span>FOR SWETHA ✦</span>
+</nav>
+
+<!-- OPENING SCREEN -->
+
+<header class="hero">
+  <div class="fade">
+    <div class="kicker">A celebration of you</div>
+
+    <h1>For you,<span>Swetha.</span></h1>
+
+    <p>
+      Some people make ordinary days feel like
+      favourite memories. Today, this little universe
+      is celebrating one of them.
+    </p>
+
+    <button class="primary" onclick="beginSurprise()">
+      BEGIN YOUR BIRTHDAY FILM ↗
+    </button>
+  </div>
+</header>
+
+<!-- BIRTHDAY MESSAGE -->
+
+<section id="message">
+  <div class="heading">
+    <small>Scene I · A note from the heart</small>
+    <h2>To my favourite human.</h2>
+    <p>A little message for someone who deserves a big celebration.</p>
+  </div>
+
+  <div class="card letter">
+    <h3>Dear Swetha, 💌</h3>
+
+    <p>
+      Happy Birthday to a truly wonderful best friend! 💛
+    </p>
+
+    <p>
+      Thank you for the laughs that arrive out of nowhere,
+      the conversations that make time disappear, and the
+      memories that become little treasures.
+      Having you as a friend makes life brighter in ways
+      that are hard to put into words.
+    </p>
+
+    <p>
+      I hope this new chapter brings you courage for every
+      dream, peace on difficult days, people who appreciate
+      your heart, and countless reasons to smile.
+    </p>
+
+    <p>
+      Never forget how special you are, not just today,
+      but on all the ordinary days too.
+      Keep shining in your own beautiful way.
+    </p>
+
+    <p class="signature">
+      All the love, always. ✨
+    </p>
+  </div>
+</section>
+
+<!-- PHOTO MEMORIES -->
+
+<section id="memories">
+  <div class="heading">
+    <small>Scene II · Our memories</small>
+    <h2>Little moments, forever.</h2>
+    <p>
+      Every friendship has moments worth keeping.
+      Add your favourite photos to make this gallery yours.
+    </p>
+  </div>
+
+  <div class="gallery">
+
+    <div class="photo">
+      <img alt="Friendship memory one">
+      <div class="photo-text">
+        <h3>Our kind of chaos</h3>
+        <p>MEMORY NO. 01</p>
+      </div>
+    </div>
+
+    <div class="photo">
+      <img alt="Friendship memory two">
+      <div class="photo-text">
+        <h3>The laughing days</h3>
+        <p>MEMORY NO. 02</p>
+      </div>
+    </div>
+
+    <div class="photo">
+      <img alt="Friendship memory three">
+      <div class="photo-text">
+        <h3>Always a favourite</h3>
+        <p>MEMORY NO. 03</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="upload-area">
+    <label for="photos">Choose your friendship photos:</label>
+    <br>
+    <input id="photos" type="file" accept="image/*" multiple>
+    <p class="note">
+      Choose up to 3 photos. They stay in this browser
+      and are not uploaded to a server.
+    </p>
+  </div>
+</section>
+
+<!-- BIRTHDAY CAKE -->
+
+<section id="birthday">
+  <div class="heading">
+    <small>Scene III · Make a wish</small>
+    <h2>One more thing…</h2>
+    <p>A birthday deserves a little sparkle and a wish just for you.</p>
+  </div>
+
+  <div class="card cake-area">
+    <div class="cake" id="cake">🎂</div>
+
+    <p id="cakeMessage">
+      Close your eyes for a second, Swetha.
+      Think of a wish that makes your heart happy. ✨
+    </p>
+
+    <button onclick="makeWish()">
+      MAKE A WISH ✨
+    </button>
+
+    <button onclick="celebrate()" style="margin:10px">
+      CELEBRATE AGAIN 🎉
+    </button>
+  </div>
+</section>
+
+<footer>
+  END CREDITS · FRIENDSHIP, LAUGHTER & A THOUSAND MORE MEMORIES
+</footer>
+
+</main>
+
+<script>
+// Smoothly begin the birthday experience.
+function beginSurprise() {
+  document.getElementById("message").scrollIntoView({
+    behavior: "smooth"
+  });
+  celebrate(45);
+}
+
+// Photo gallery: display up to 3 selected photos.
+const photoInput = document.getElementById("photos");
+let photoURLs = [];
+
+photoInput.addEventListener("change", function() {
+  photoURLs.forEach(url => URL.revokeObjectURL(url));
+  photoURLs = [];
+
+  const files = Array.from(this.files || [])
+    .filter(file => file.type.startsWith("image/"))
+    .slice(0, 3);
+
+  const cards = document.querySelectorAll(".photo");
+
+  cards.forEach((card, index) => {
+    const img = card.querySelector("img");
+
+    if (files[index]) {
+      const url = URL.createObjectURL(files[index]);
+      photoURLs.push(url);
+      img.src = url;
+      card.classList.add("has-image");
+    } else {
+      img.removeAttribute("src");
+      card.classList.remove("has-image");
+    }
+  });
+
+  if (this.files.length > 3) {
+    alert("Only the first 3 photos will be displayed.");
+  }
+});
+
+// Birthday wish interaction.
+let wished = false;
+
+function makeWish() {
+  const message = document.getElementById("cakeMessage");
+
+  if (!wished) {
+    wished = true;
+    message.textContent =
+      "Wish sent to the universe! ✨ May beautiful things find their way to you, Swetha. Happy Birthday! 💛";
+
+    document.getElementById("cake").textContent = "🎂💖";
+    celebrate(180);
+  } else {
+    message.textContent =
+      "Keep that wish close, Swetha. Here's to a year full of lovely surprises! ✨";
+
+    celebrate(70);
+  }
+}
+
+// Confetti animation.
+function celebrate(count = 160) {
+  const colors = [
+    "#f7cf83",
+    "#f5a8bd",
+    "#fff4df",
+    "#bba9f4",
+    "#a8e6d7",
+    "#e9a9ff"
+  ];
+
+  for (let i = 0; i < count; i++) {
+    const piece = document.createElement("div");
+
+    piece.style.position = "fixed";
+    piece.style.zIndex = "9999";
+    piece.style.top = "-15px";
+    piece.style.left = Math.random() * 100 + "vw";
+    piece.style.width = 5 + Math.random() * 8 + "px";
+    piece.style.height = 8 + Math.random() * 12 + "px";
+    piece.style.background =
+      colors[Math.floor(Math.random() * colors.length)];
+    piece.style.pointerEvents = "none";
+
+    document.body.appendChild(piece);
+
+    const drift = (Math.random() - 0.5) * 260;
+    const duration = 2000 + Math.random() * 2000;
+    const rotation = Math.random() * 800;
+
+    const animation = piece.animate([
+      {
+        transform: "translate(0, 0) rotate(0deg)",
+        opacity: 1
+      },
+      {
+        transform:
+          `translate(${drift}px, ${innerHeight + 60}px) rotate(${rotation}deg)`,
+        opacity: 0
+      }
+    ], {
+      duration: duration,
+      easing: "ease-out"
+    });
+
+    animation.onfinish = () => piece.remove();
+  }
+}
+
+// Animated starry background.
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+
+let width, height, stars = [];
+
+function resizeStars() {
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  width = window.innerWidth;
+  height = window.innerHeight;
+
+  canvas.width = width * dpr;
+  canvas.height = height * dpr;
+  canvas.style.width = width + "px";
+  canvas.style.height = height + "px";
+
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  stars = Array.from(
+    { length: Math.min(140, Math.floor(width * height / 7000)) },
+    () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: 0.5 + Math.random() * 1.3,
+      phase: Math.random() * 6,
+      speed: 0.01 + Math.random() * 0.02
+    })
+  );
+}
+
+function drawStars() {
+  ctx.clearRect(0, 0, width, height);
+
+  stars.forEach(star => {
+    star.phase += star.speed;
+
+    const alpha = 0.3 + 0.7 *
+      ((Math.sin(star.phase) + 1) / 2);
+
+    ctx.beginPath();
+    ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,239,220,${alpha})`;
+    ctx.fill();
+  });
+
+  requestAnimationFrame(drawStars);
+}
+
+window.addEventListener("resize", resizeStars);
+resizeStars();
+drawStars();
+</script>
+
+</body>
+</html>
